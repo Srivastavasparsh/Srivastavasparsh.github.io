@@ -6,27 +6,51 @@
     <title>Sparsh Srivastava | Portfolio</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-color: #0d6efd;
             --bg-dark: #121212;
             --card-bg: #1e1e1e;
             --text-light: #e0e0e0;
+            --timeline-color: #2c2c2c;
         }
         body {
             background-color: var(--bg-dark);
             color: var(--text-light);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
         .navbar { background-color: rgba(18, 18, 18, 0.95); border-bottom: 1px solid #333; }
-        .hero-section { padding: 80px 0; }
-        .profile-img { width: 160px; height: 160px; border-radius: 50%; border: 4px solid var(--primary-color); object-fit: cover; margin-bottom: 20px; }
+        
+        /* Hero Section */
+        .hero-section { padding: 80px 0; background: linear-gradient(180deg, rgba(13,110,253,0.05) 0%, rgba(18,18,18,0) 100%); }
+        .profile-img { 
+            width: 180px; 
+            height: 180px; 
+            border-radius: 50%; 
+            border: 4px solid var(--primary-color); 
+            object-fit: cover; 
+            margin-bottom: 20px; 
+            box-shadow: 0 0 20px rgba(13, 110, 253, 0.3);
+        }
         .highlight-title { color: var(--primary-color); font-weight: 700; letter-spacing: 1px; }
-        .bio-text { font-size: 1.1rem; line-height: 1.6; color: #b0b3b8; }
-        .card { background-color: var(--card-bg); border: 1px solid #333; color: var(--text-light); transition: transform 0.3s; }
+        .bio-text { font-size: 1.1rem; line-height: 1.7; color: #b0b3b8; }
+        
+        /* Cards */
+        .card { background-color: var(--card-bg); border: 1px solid #333; color: var(--text-light); transition: transform 0.3s; height: 100%; }
         .card:hover { transform: translateY(-5px); border-color: var(--primary-color); }
-        .tech-badge { background-color: #333; color: #fff; padding: 5px 10px; border-radius: 15px; font-size: 0.8rem; margin-right: 5px; }
-        .btn-primary { background-color: var(--primary-color); border: none; }
+        .tech-badge { background-color: #333; color: #fff; padding: 5px 10px; border-radius: 15px; font-size: 0.75rem; margin-right: 5px; border: 1px solid #444; }
+        
+        /* Buttons */
+        .btn-primary { background-color: var(--primary-color); border: none; padding: 10px 25px; }
+        .btn-outline-primary { border-color: var(--primary-color); color: var(--primary-color); }
+        .btn-outline-primary:hover { background-color: var(--primary-color); color: white; }
+        
+        /* Timeline for Experience */
+        .timeline-item { border-left: 2px solid var(--primary-color); padding-left: 20px; margin-bottom: 30px; position: relative; }
+        .timeline-item::before { content: ''; position: absolute; left: -6px; top: 0; width: 10px; height: 10px; background-color: var(--primary-color); border-radius: 50%; }
+        .timeline-date { font-size: 0.9rem; color: var(--primary-color); font-weight: bold; }
+        
         .leetcode-badge { background-color: #ffa116; color: black; font-weight: bold; }
         a { text-decoration: none; }
     </style>
@@ -41,6 +65,7 @@
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
                     <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
                     <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
                 </ul>
@@ -50,35 +75,33 @@
 
     <section class="hero-section text-center">
         <div class="container">
-            <img src="https://ui-avatars.com/api/?name=Sparsh+Srivastava&background=0d6efd&color=fff&size=150" class="profile-img" alt="Sparsh Srivastava">
+            <img src="profile.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Sparsh+Srivastava&background=0d6efd&color=fff&size=180'" class="profile-img" alt="Sparsh Srivastava">
             
             <h1 class="display-4 fw-bold text-white mb-2">Sparsh Srivastava</h1>
-            
             <h4 class="highlight-title mb-4">Java & Python Developer | AI Engineer | LeetCode Knight</h4>
 
             <div class="row justify-content-center mb-4">
                 <div class="col-lg-8">
                     <p class="bio-text">
-                        I am a 2024 B.Tech graduate in Computer Science with a passion for building scalable backend systems. 
-                        To bridge the gap between traditional software engineering and modern AI, I recently completed an intensive 
-                        <strong>11-month Professional Certification in Generative AI & Machine Learning</strong> from <strong>IIT Guwahati</strong>. 
-                        I specialize in creating hybrid microservices and intelligent applications that solve real-world problems.
+                        I am a <strong>2024 B.Tech graduate</strong> in Computer Science specializing in scalable backend systems and AI integration. 
+                        Recently certified in <strong>Generative AI & ML from IIT Guwahati</strong> (11-month intensive program). 
+                        I build hybrid microservices and intelligent agents using Java Spring Boot, Python, and LangChain.
                     </p>
                 </div>
             </div>
             
             <div class="d-flex justify-content-center gap-3 mb-4 flex-wrap">
-                <a href="resume.pdf" target="_blank" class="btn btn-primary btn-lg">
+                <a href="resume.pdf" target="_blank" class="btn btn-primary rounded-pill">
                     <i class="fas fa-file-download me-2"></i>Download Resume
                 </a>
-                <a href="https://github.com/Srivastavasparsh" target="_blank" class="btn btn-dark border-secondary">
+                <a href="https://github.com/Srivastavasparsh" target="_blank" class="btn btn-dark border-secondary rounded-circle">
                     <i class="fab fa-github"></i>
                 </a>
-                <a href="https://www.linkedin.com/in/srivastavasparsh/" target="_blank" class="btn btn-primary" style="background-color: #0077b5; border: none;">
-                    <i class="fab fa-linkedin"></i>
+                <a href="https://www.linkedin.com/in/srivastavasparsh/" target="_blank" class="btn btn-primary rounded-circle" style="background-color: #0077b5;">
+                    <i class="fab fa-linkedin-in"></i>
                 </a>
-                <a href="https://leetcode.com/u/Srivastavasparsh/" target="_blank" class="btn btn-warning text-dark fw-bold">
-                    <i class="fas fa-code"></i> LeetCode
+                <a href="https://leetcode.com/u/Sparsh_Srivastava/" target="_blank" class="btn btn-warning text-dark fw-bold rounded-pill">
+                    <i class="fas fa-code me-2"></i> LeetCode
                 </a>
             </div>
 
@@ -89,54 +112,91 @@
         </div>
     </section>
 
+    <section id="experience" class="container py-5">
+        <h2 class="text-center mb-5 fw-bold"><i class="fas fa-briefcase text-primary"></i> Experience & Education</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                
+                <div class="timeline-item">
+                    <span class="timeline-date">July 2024 - Sep 2024</span>
+                    <h5 class="fw-bold">Frontend Developer Intern</h5>
+                    <p class="mb-1 text-primary">VASTECH (Remote)</p>
+                    <p class="text-muted small">Built responsive iOS grocery apps using Swift and Firebase. Optimized app performance and collaborated with QA teams.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <span class="timeline-date">Jan 2024 - June 2024</span>
+                    <h5 class="fw-bold">AI Engineer Intern</h5>
+                    <p class="mb-1 text-primary">Awaaz International (Remote)</p>
+                    <p class="text-muted small">Engineered real-time NLP translation models. Reduced inference latency and integrated translation APIs.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <span class="timeline-date">2020 - 2024</span>
+                    <h5 class="fw-bold">Bachelor of Technology (CSE)</h5>
+                    <p class="mb-1 text-primary">Pranveer Singh Institute of Technology, Kanpur</p>
+                    <p class="text-muted small">Graduated with 6.5 CGPA. Focused on Data Structures, Algorithms, and System Design.</p>
+                </div>
+
+                 <div class="timeline-item">
+                    <span class="timeline-date">Professional Certification</span>
+                    <h5 class="fw-bold">Generative AI & Machine Learning</h5>
+                    <p class="mb-1 text-primary">E&ICT Academy, IIT Guwahati</p>
+                    <p class="text-muted small">11-month intensive program covering LLMs, RAG, and Deep Learning.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
     <section id="projects" class="container py-5">
         <h2 class="text-center mb-5 fw-bold"><i class="fas fa-laptop-code text-primary"></i> Projects</h2>
         <div class="row g-4">
             
             <div class="col-md-4">
                 <div class="card h-100">
-                    <div class="card-body">
+                    <div class="card-body d-flex flex-column">
                         <h5 class="card-title fw-bold">SmartBank AI System</h5>
-                        <p class="card-text text-muted small">Hybrid Microservices Architecture</p>
-                        <p class="card-text">Secure banking system integrating <strong>Java Spring Boot</strong> for transactions and <strong>Python Flask</strong> for AI credit analysis.</p>
+                        <p class="card-text text-primary small">Hybrid Microservices</p>
+                        <p class="card-text small flex-grow-1">Secure banking system integrating Java Spring Boot for transactions and Python Flask for AI credit analysis.</p>
                         <div class="mb-3">
                             <span class="tech-badge">Java</span>
                             <span class="tech-badge">Spring Boot</span>
                             <span class="tech-badge">Python</span>
                         </div>
-                        <a href="https://github.com/Srivastavasparsh/SmartBank-AI-Microservices" target="_blank" class="btn btn-outline-primary btn-sm w-100">View Code <i class="fab fa-github"></i></a>
+                        <a href="https://github.com/Srivastavasparsh/SmartBank-AI-Microservices" target="_blank" class="btn btn-outline-primary btn-sm w-100">View Code</a>
                     </div>
                 </div>
             </div>
 
             <div class="col-md-4">
                 <div class="card h-100">
-                    <div class="card-body">
+                    <div class="card-body d-flex flex-column">
                         <h5 class="card-title fw-bold">SmartCart AI</h5>
-                        <p class="card-text text-muted small">E-Commerce Recommendation Engine</p>
-                        <p class="card-text">Intelligent shopping assistant using <strong>Collaborative Filtering</strong> to suggest products based on user history.</p>
+                        <p class="card-text text-primary small">Recommendation Engine</p>
+                        <p class="card-text small flex-grow-1">Intelligent shopping assistant using Collaborative Filtering to suggest products based on user history.</p>
                         <div class="mb-3">
                             <span class="tech-badge">Python</span>
                             <span class="tech-badge">Pandas</span>
-                            <span class="tech-badge">Scikit-Learn</span>
+                            <span class="tech-badge">ML</span>
                         </div>
-                        <a href="https://github.com/Srivastavasparsh/smartcart-AI" target="_blank" class="btn btn-outline-primary btn-sm w-100">View Code <i class="fab fa-github"></i></a>
+                        <a href="https://github.com/Srivastavasparsh/smartcart-AI" target="_blank" class="btn btn-outline-primary btn-sm w-100">View Code</a>
                     </div>
                 </div>
             </div>
 
             <div class="col-md-4">
                 <div class="card h-100">
-                    <div class="card-body">
+                    <div class="card-body d-flex flex-column">
                         <h5 class="card-title fw-bold">Local RAG Researcher</h5>
-                        <p class="card-text text-muted small">Generative AI Assistant</p>
-                        <p class="card-text">Privacy-focused AI assistant using <strong>Ollama</strong> and <strong>LangChain</strong> to chat with local PDF documents offline.</p>
+                        <p class="card-text text-primary small">GenAI Assistant</p>
+                        <p class="card-text small flex-grow-1">Privacy-focused AI assistant using Ollama and LangChain to chat with local PDF documents offline.</p>
                         <div class="mb-3">
                             <span class="tech-badge">LangChain</span>
+                            <span class="tech-badge">Ollama</span>
                             <span class="tech-badge">ChromaDB</span>
-                            <span class="tech-badge">LLMs</span>
                         </div>
-                        <a href="https://github.com/Srivastavasparsh/Local-RAG-Assistant" target="_blank" class="btn btn-outline-primary btn-sm w-100">View Code <i class="fab fa-github"></i></a>
+                        <a href="https://github.com/Srivastavasparsh/Local-RAG-Assistant" target="_blank" class="btn btn-outline-primary btn-sm w-100">View Code</a>
                     </div>
                 </div>
             </div>
@@ -144,24 +204,24 @@
         </div>
     </section>
 
-    <section id="skills" class="container py-5">
-        <h2 class="text-center mb-4 fw-bold">Technical Skills</h2>
+    <section id="skills" class="container py-5 mb-5">
+        <h2 class="text-center mb-4 fw-bold">Technical Arsenal</h2>
         <div class="row text-center justify-content-center">
             <div class="col-md-8">
                 <span class="badge bg-dark border border-secondary p-3 m-1">Java Core/Adv</span>
                 <span class="badge bg-dark border border-secondary p-3 m-1">Spring Boot</span>
                 <span class="badge bg-dark border border-secondary p-3 m-1">Python</span>
                 <span class="badge bg-dark border border-secondary p-3 m-1">Flask</span>
-                <span class="badge bg-dark border border-secondary p-3 m-1">Data Structures (DSA)</span>
+                <span class="badge bg-dark border border-secondary p-3 m-1">Data Structures</span>
                 <span class="badge bg-dark border border-secondary p-3 m-1">SQL / MySQL</span>
-                <span class="badge bg-dark border border-secondary p-3 m-1">Git & GitHub</span>
                 <span class="badge bg-dark border border-secondary p-3 m-1">Microservices</span>
+                <span class="badge bg-dark border border-secondary p-3 m-1">Git & GitHub</span>
                 <span class="badge bg-dark border border-secondary p-3 m-1">Generative AI</span>
             </div>
         </div>
     </section>
 
-    <footer class="text-center py-4 text-muted border-top border-secondary mt-5">
+    <footer class="text-center py-4 text-muted border-top border-secondary">
         <p>Email: <a href="mailto:srivastava.sparsh123@gmail.com" class="text-decoration-none text-light">srivastava.sparsh123@gmail.com</a></p>
         <p class="small">&copy; 2026 Sparsh Srivastava. Hosted on GitHub Pages.</p>
     </footer>
