@@ -430,7 +430,7 @@
                 chatBody.scrollTop = chatBody.scrollHeight;
 
                 try {
-                    const response = await fetch('http://localhost:8000/chat', {
+                   const response = await fetch('https://sparsh-ai-agent.onrender.com/chat', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ message: userText })
