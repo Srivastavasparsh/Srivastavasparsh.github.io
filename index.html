@@ -238,4 +238,75 @@
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title fw-bold">Local RAG Researcher</h5>
                         <p class="card-text text-primary small">GenAI Assistant</p>
-                        <p class="card-text small flex-grow-1">Privacy-focused AI assistant using Ollama and LangChain to chat with local PDF documents
+                        <p class="card-text small flex-grow-1">Privacy-focused AI assistant using Ollama and LangChain to chat with local PDF documents offline.</p>
+                        <div class="mb-3">
+                            <span class="tech-badge">LangChain</span>
+                            <span class="tech-badge">Ollama</span>
+                            <span class="tech-badge">ChromaDB</span>
+                        </div>
+                        <a href="https://github.com/Srivastavasparsh/Local-RAG-Assistant" target="_blank" class="btn btn-outline-primary btn-sm w-100">View Code</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="skills" class="container py-5 mb-5">
+        <h2 class="text-center mb-4 fw-bold">Technical Arsenal</h2>
+        <div class="row text-center justify-content-center">
+            <div class="col-md-8">
+                <span class="badge bg-dark border border-secondary p-3 m-1">Java Core/Adv</span>
+                <span class="badge bg-dark border border-secondary p-3 m-1">Spring Boot</span>
+                <span class="badge bg-dark border border-secondary p-3 m-1">Python</span>
+                <span class="badge bg-dark border border-secondary p-3 m-1">FastAPI</span>
+                <span class="badge bg-dark border border-secondary p-3 m-1">Data Structures</span>
+                <span class="badge bg-dark border border-secondary p-3 m-1">SQL / MySQL</span>
+                <span class="badge bg-dark border border-secondary p-3 m-1">Microservices</span>
+                <span class="badge bg-dark border border-secondary p-3 m-1">Git & GitHub</span>
+                <span class="badge bg-dark border border-secondary p-3 m-1">Generative AI</span>
+            </div>
+        </div>
+    </section>
+
+    <footer class="text-center py-4 text-muted border-top border-secondary">
+        <p>Email: <a href="mailto:srivastava.sparsh123@gmail.com" class="text-decoration-none text-light">srivastava.sparsh123@gmail.com</a></p>
+        <p class="small">&copy; 2026 Sparsh Srivastava. Hosted on GitHub Pages.</p>
+    </footer>
+
+    <button class="btn btn-primary rounded-circle position-fixed shadow-lg" 
+            style="bottom: 30px; right: 30px; width: 60px; height: 60px; z-index: 1000;" 
+            type="button" data-bs-toggle="offcanvas" data-bs-target="#aiChatWindow">
+        <i class="fas fa-robot fs-4"></i>
+    </button>
+
+    <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="aiChatWindow" aria-labelledby="aiChatLabel" style="border-left: 1px solid #333;">
+        <div class="offcanvas-header border-bottom border-secondary">
+            <h5 class="offcanvas-title fw-bold" id="aiChatLabel">
+                <i class="fas fa-bolt text-warning me-2"></i> Sparsh-AI Agent
+            </h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column">
+            <p class="text-muted small mb-4">
+                Ask this LLM agent anything about my resume, tech stack, or problem-solving skills!
+            </p>
+            
+            <div class="flex-grow-1 overflow-auto mb-3 pe-2" id="chatHistory" style="display: flex; flex-direction: column; gap: 15px;">
+                <div class="align-self-start bg-secondary bg-opacity-25 p-3 rounded-3 shadow-sm border border-secondary" style="max-width: 85%;">
+                    <p class="mb-0 small">Hi! I'm Sparsh's AI assistant. I'm built with Llama-3 and FastAPI. Are you looking to hire for a specific tech stack?</p>
+                </div>
+            </div>
+
+            <div class="input-group mt-auto">
+                <input type="text" class="form-control bg-dark text-light border-secondary" placeholder="e.g., How is his Java?" id="chatInput">
+                <button class="btn btn-primary" type="button" onclick="alert('Backend hook coming soon! This is where we connect to FastAPI.')">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
