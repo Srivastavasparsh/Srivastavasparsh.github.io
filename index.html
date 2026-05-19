@@ -255,16 +255,21 @@
     <section id="skills" class="container py-5 mb-5">
         <h2 class="text-center mb-4 fw-bold">Technical Arsenal</h2>
         <div class="row text-center justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-10">
                 <span class="badge bg-dark border border-secondary p-3 m-1">Java Core/Adv</span>
                 <span class="badge bg-dark border border-secondary p-3 m-1">Spring Boot</span>
                 <span class="badge bg-dark border border-secondary p-3 m-1">Python</span>
                 <span class="badge bg-dark border border-secondary p-3 m-1">FastAPI</span>
-                <span class="badge bg-dark border border-secondary p-3 m-1">Data Structures</span>
-                <span class="badge bg-dark border border-secondary p-3 m-1">SQL / MySQL</span>
                 <span class="badge bg-dark border border-secondary p-3 m-1">Microservices</span>
-                <span class="badge bg-dark border border-secondary p-3 m-1">Git & GitHub</span>
                 <span class="badge bg-dark border border-secondary p-3 m-1">Generative AI</span>
+                <span class="badge bg-dark border border-secondary p-3 m-1">LangChain / LangGraph</span>
+                <span class="badge bg-dark border border-secondary p-3 m-1">Docker</span>
+                <span class="badge bg-dark border border-secondary p-3 m-1">Kubernetes</span>
+                <span class="badge bg-dark border border-secondary p-3 m-1">CI/CD Pipelines</span>
+                <span class="badge bg-dark border border-secondary p-3 m-1">Data Analytics</span>
+                <span class="badge bg-dark border border-secondary p-3 m-1">SQL / MySQL</span>
+                <span class="badge bg-dark border border-secondary p-3 m-1">Data Structures</span>
+                <span class="badge bg-dark border border-secondary p-3 m-1">Git & GitHub</span>
             </div>
         </div>
     </section>
@@ -371,7 +376,6 @@
             
             let initialized = false;
 
-            // Typewriter effect function
             function typeWriter(text, element, speed = 30) {
                 let i = 0;
                 element.innerHTML = "";
@@ -388,7 +392,6 @@
             chatBtn.addEventListener('click', () => {
                 chatBox.classList.toggle('hidden');
                 
-                // Trigger intro message only on first open
                 if (!chatBox.classList.contains('hidden') && !initialized) {
                     initialized = true;
                     const msgDiv = document.createElement('div');
@@ -403,8 +406,57 @@
 
             closeBtn.addEventListener('click', () => { chatBox.classList.add('hidden'); });
 
-            sendBtn.addEventListener('click', () => {
-                alert("FastAPI backend connection is under construction! Soon I will reply dynamically.");
+            sendBtn.addEventListener('click', async () => {
+                const inputField = document.getElementById('chat-input');
+                const userText = inputField.value.trim();
+                
+                if (!userText) return;
+                
+                const userMsgDiv = document.createElement('div');
+                userMsgDiv.className = 'ai-message';
+                userMsgDiv.style.background = '#2c2c2c';
+                userMsgDiv.style.borderColor = '#444';
+                userMsgDiv.style.alignSelf = 'flex-end';
+                userMsgDiv.innerText = userText;
+                chatBody.appendChild(userMsgDiv);
+                
+                inputField.value = ''; 
+                chatBody.scrollTop = chatBody.scrollHeight; 
+
+                const typingDiv = document.createElement('div');
+                typingDiv.className = 'ai-message text-muted small';
+                typingDiv.innerText = "Sparsh-AI is thinking...";
+                chatBody.appendChild(typingDiv);
+                chatBody.scrollTop = chatBody.scrollHeight;
+
+                try {
+                    const response = await fetch('http://localhost:8000/chat', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ message: userText })
+                    });
+                    
+                    const data = await response.json();
+                    
+                    chatBody.removeChild(typingDiv);
+                    
+                    const botMsgDiv = document.createElement('div');
+                    botMsgDiv.className = 'ai-message';
+                    chatBody.appendChild(botMsgDiv);
+                    
+                    typeWriter(data.reply, botMsgDiv, 20); 
+                    
+                } catch (error) {
+                    chatBody.removeChild(typingDiv);
+                    const errorDiv = document.createElement('div');
+                    errorDiv.className = 'ai-message text-danger';
+                    errorDiv.innerText = "Error: Cannot connect to the backend server. Is FastAPI running?";
+                    chatBody.appendChild(errorDiv);
+                }
+            });
+
+            document.getElementById('chat-input').addEventListener('keypress', function (e) {
+                if (e.key === 'Enter') sendBtn.click();
             });
         });
     </script>
