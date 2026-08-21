@@ -1,396 +1,806 @@
-Here is your complete, updated `index.html` file with your new **AI Technical Mock Interviewer** integrated right at the top of your projects grid, complete with its live Streamlit demo link and GitHub link.
-
-You can select all the code below, copy it, and completely overwrite your `index.html` file in VS Code:
-
-```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sparsh Srivastava | Portfolio</title>
+    <title>Sparsh Srivastava | Full Stack AI Engineer</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #0d6efd;
-            --bg-dark: #121212;
-            --card-bg: #1e1e1e;
-            --text-light: #e0e0e0;
-            --timeline-color: #2c2c2c;
+            --theme-color: #54B689;
+            /* DevCard Green */
+            --theme-color-hover: #459671;
+            --sidebar-bg: #f8f9fa;
+            --text-main: #292929;
+            --text-light: #6c757d;
+            --bg-body: #ffffff;
+            --card-bg: #ffffff;
+            --border-color: #e9ecef;
         }
+
         body {
-            background-color: var(--bg-dark);
+            font-family: 'Inter', sans-serif;
+            color: var(--text-main);
+            background-color: var(--bg-body);
+            overflow-x: hidden;
+        }
+
+        /* Fixed Sidebar Layout */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 280px;
+            height: 100vh;
+            background-color: var(--theme-color);
+            color: white;
+            padding: 30px 20px;
+            overflow-y: auto;
+            z-index: 100;
+        }
+
+        .main-content {
+            margin-left: 280px;
+            padding: 50px;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Elements */
+        .profile-img-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            object-fit: cover;
+            object-position: top;
+            /* Prevents the head from being cut off */
+            background-color: white;
+        }
+
+        .sidebar h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        .sidebar .title {
+            font-size: 1rem;
+            text-align: center;
+            opacity: 0.9;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.2rem;
+            transition: opacity 0.3s;
+        }
+
+        .social-links a:hover {
+            opacity: 0.7;
+        }
+
+        .nav-menu {
+            list-style: none;
+            padding: 0;
+        }
+
+        .nav-menu li {
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            opacity: 0.9;
+            transition: opacity 0.3s;
+        }
+
+        .nav-menu a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
+        /* Main Content Typography & Spacing */
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            position: relative;
+            margin-bottom: 40px;
+            padding-left: 15px;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            height: 80%;
+            width: 4px;
+            background-color: var(--theme-color);
+            border-radius: 2px;
+        }
+
+        /* Project Cards */
+        .project-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 25px;
+            height: 100%;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+            border-color: var(--theme-color);
+        }
+
+        .project-card h4 {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .tech-badge {
+            background-color: #f1f3f5;
             color: var(--text-light);
-            font-family: 'Poppins', sans-serif;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            display: inline-block;
         }
-        .navbar { background-color: rgba(18, 18, 18, 0.95); border-bottom: 1px solid #333; }
-        
-        /* Hero Section */
-        .hero-section { padding: 80px 0; background: linear-gradient(180deg, rgba(13,110,253,0.05) 0%, rgba(18,18,18,0) 100%); }
-        .profile-img { 
-            width: 180px; 
-            height: 180px; 
-            border-radius: 50%; 
-            border: 4px solid var(--primary-color); 
-            object-fit: cover; 
-            margin-bottom: 20px; 
-            box-shadow: 0 0 20px rgba(13, 110, 253, 0.3);
+
+        .btn-theme {
+            background-color: var(--theme-color);
+            color: white;
+            font-weight: 600;
+            border-radius: 4px;
+            padding: 8px 20px;
+            transition: background 0.3s;
         }
-        .highlight-title { color: var(--primary-color); font-weight: 700; letter-spacing: 1px; }
-        .bio-text { font-size: 1.1rem; line-height: 1.7; color: #b0b3b8; }
-        
-        /* Cards */
-        .card { background-color: var(--card-bg); border: 1px solid #333; color: var(--text-light); transition: transform 0.3s; height: 100%; }
-        .card:hover { transform: translateY(-5px); border-color: var(--primary-color); }
-        .tech-badge { background-color: #333; color: #fff; padding: 5px 10px; border-radius: 15px; font-size: 0.75rem; margin-right: 5px; border: 1px solid #444; }
-        
-        /* Buttons */
-        .btn-primary { background-color: var(--primary-color); border: none; padding: 10px 25px; }
-        .btn-outline-primary { border-color: var(--primary-color); color: var(--primary-color); }
-        .btn-outline-primary:hover { background-color: var(--primary-color); color: white; }
-        
-        /* Timeline for Experience */
-        .timeline-item { border-left: 2px solid var(--primary-color); padding-left: 20px; margin-bottom: 30px; position: relative; }
-        .timeline-item::before { content: ''; position: absolute; left: -6px; top: 0; width: 10px; height: 10px; background-color: var(--primary-color); border-radius: 50%; }
-        .timeline-date { font-size: 0.9rem; color: var(--primary-color); font-weight: bold; }
-        
-        .leetcode-badge { background-color: #ffa116; color: black; font-weight: bold; }
-        a { text-decoration: none; }
+
+        .btn-theme:hover {
+            background-color: var(--theme-color-hover);
+            color: white;
+        }
+
+        /* Chat Tooltip */
+        .chat-tooltip {
+            position: fixed;
+            bottom: 100px;
+            right: 25px;
+            background: var(--card-bg);
+            color: var(--text-main);
+            padding: 12px 18px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            border: 1.5px solid var(--theme-color);
+            z-index: 999;
+            animation: bounce 2s infinite;
+        }
+
+        .chat-tooltip::after {
+            content: '';
+            position: absolute;
+            bottom: -7px;
+            right: 22px;
+            width: 12px;
+            height: 12px;
+            background: var(--card-bg);
+            border-bottom: 1.5px solid var(--theme-color);
+            border-right: 1.5px solid var(--theme-color);
+            transform: rotate(45deg);
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(-10px);
+            }
+
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        /* AI Chatbot Styles */
+        .custom-chat-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--theme-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .custom-chat-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .custom-chat-box {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 350px;
+            height: 500px;
+            max-height: 80vh;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            z-index: 1000;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.3s ease;
+        }
+
+        .custom-chat-box.hidden {
+            opacity: 0;
+            transform: translateY(20px);
+            pointer-events: none;
+        }
+
+        .chat-header {
+            background: var(--theme-color);
+            padding: 15px;
+            color: white;
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            opacity: 0.8;
+        }
+
+        .close-btn:hover {
+            opacity: 1;
+        }
+
+        .chat-body {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background: #f8f9fa;
+        }
+
+        .ai-message {
+            background: #e9ecef;
+            color: var(--text-main);
+            padding: 10px 15px;
+            border-radius: 8px;
+            border-bottom-left-radius: 0;
+            font-size: 0.9rem;
+            max-width: 85%;
+            align-self: flex-start;
+        }
+
+        .chat-footer {
+            padding: 15px;
+            background: white;
+            border-top: 1px solid var(--border-color);
+            border-bottom-left-radius: 12px;
+            border-bottom-right-radius: 12px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-footer input {
+            flex: 1;
+            background: #f8f9fa;
+            border: 1px solid var(--border-color);
+            padding: 10px 15px;
+            border-radius: 20px;
+            outline: none;
+            font-size: 0.9rem;
+        }
+
+        .chat-footer button {
+            background: var(--theme-color);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        @media (max-width: 991px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                padding: 40px 20px;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 30px 15px;
+            }
+        }
     </style>
 </head>
+
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand fw-bold" href="#">Sparsh.Dev</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
-                </ul>
-            </div>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="profile-img-container">
+            <img src="sparsh-updated-photo.jpg" alt="Sparsh Srivastava" class="profile-img"
+                onerror="this.src='https://ui-avatars.com/api/?name=Sparsh+Srivastava&background=ffffff&color=54B689&size=160'">
         </div>
-    </nav>
+        <h1>Sparsh Srivastava</h1>
+        <div class="title">Full Stack AI Engineer</div>
 
-    <section class="hero-section text-center">
-        <div class="container">
-            <img src="profile.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Sparsh+Srivastava&background=0d6efd&color=fff&size=180'" class="profile-img" alt="Sparsh Srivastava">
-            
-            <h1 class="display-4 fw-bold text-white mb-2">Sparsh Srivastava</h1>
-            <h4 class="highlight-title mb-4">Java & Python Developer | AI Engineer | LeetCode Knight</h4>
+        <div class="social-links">
+            <a href="https://github.com/Srivastavasparsh" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/srivastavasparsh/" target="_blank"><i
+                    class="fab fa-linkedin-in"></i></a>
+            <a href="https://leetcode.com/u/Sparsh_Srivastava/" target="_blank"><i class="fas fa-code"></i></a>
+        </div>
 
-            <div class="row justify-content-center mb-4">
+        <ul class="nav-menu">
+            <li><a href="#about"><i class="fas fa-user me-2"></i> About Me</a></li>
+            <li><a href="#projects"><i class="fas fa-laptop-code me-2"></i> Projects</a></li>
+            <li><a href="#skills"><i class="fas fa-tools me-2"></i> Skills</a></li>
+            <li><a href="#experience"><i class="fas fa-briefcase me-2"></i> Experience</a></li>
+        </ul>
+
+        <div class="text-center mt-4">
+            <a href="mailto:srivastava.sparsh123@gmail.com" class="btn btn-outline-light btn-sm rounded-pill px-4"><i
+                    class="fas fa-paper-plane me-2"></i> Hire Me</a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- About Section -->
+        <section id="about" class="mb-5">
+            <h2 class="section-title">About Me</h2>
+            <div class="row align-items-center">
                 <div class="col-lg-8">
-                    <p class="bio-text">
-                        I am a <strong>2024 B.Tech graduate</strong> in Computer Science specializing in scalable backend systems and AI integration. 
-                        Recently certified in <strong>Generative AI & ML from IIT Guwahati</strong> (11-month intensive program). 
-                        I build hybrid microservices and intelligent agents using Java Spring Boot, Python, and LangChain.
+                    <p class="lead text-muted mb-4">
+                        I am a Full Stack AI Engineer specializing in scalable backend systems, microservices, and
+                        Generative AI integration. I leverage technologies like Java Spring Boot, Node.js, and Python
+                        LangChain to build intelligent, high-performance applications.
                     </p>
+                    <p class="mb-4">
+                        As a 2024 B.Tech graduate in Computer Science with an 11-month intensive certification in
+                        Generative AI & Machine Learning from IIT Guwahati, I bridge the gap between traditional
+                        software architecture and modern AI capabilities.
+                    </p>
+                    <div class="d-flex gap-3 flex-wrap">
+                        <span class="badge bg-warning text-dark p-2 rounded-pill"><i
+                                class="fas fa-chess-knight me-1"></i> LeetCode Knight (Top 5.89%)</span>
+                        <span class="badge bg-secondary p-2 rounded-pill"><i class="fas fa-check-circle me-1"></i> 500+
+                            DSA Problems</span>
+                    </div>
                 </div>
             </div>
-            
-            <div class="d-flex justify-content-center gap-3 mb-4 flex-wrap">
-                <a href="resume.pdf" target="_blank" class="btn btn-primary rounded-pill">
-                    <i class="fas fa-file-download me-2"></i>Download Resume
-                </a>
-                <a href="https://github.com/Srivastavasparsh" target="_blank" class="btn btn-dark border-secondary rounded-circle">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/srivastavasparsh/" target="_blank" class="btn btn-primary rounded-circle" style="background-color: #0077b5;">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
-                <a href="https://leetcode.com/u/Sparsh_Srivastava/" target="_blank" class="btn btn-warning text-dark fw-bold rounded-pill">
-                    <i class="fas fa-code me-2"></i> LeetCode
-                </a>
-            </div>
+        </section>
 
-            <div class="mt-3">
-                <span class="badge leetcode-badge p-2 m-1"><i class="fas fa-chess-knight"></i> Top 5.89% (Knight)</span>
-                <span class="badge bg-secondary p-2 m-1"><i class="fas fa-check-circle"></i> 500+ Problems Solved</span>
-            </div>
-        </div>
-    </section>
+        <!-- Projects Section -->
+        <section id="projects" class="mb-5">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="row g-4">
 
-    <section id="experience" class="container py-5">
-        <h2 class="text-center mb-5 fw-bold"><i class="fas fa-briefcase text-primary"></i> Experience & Education</h2>
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                
-                <div class="timeline-item">
-                    <span class="timeline-date">July 2024 - Sep 2024</span>
-                    <h5 class="fw-bold">Frontend Developer Intern</h5>
-                    <p class="mb-1 text-primary">VASTECH (Remote)</p>
-                    <p class="text-muted small">Built responsive iOS grocery apps using Swift and Firebase. Optimized app performance and collaborated with QA teams.</p>
+                <!-- Collab-Space -->
+                <div class="col-md-6">
+                    <div class="project-card d-flex flex-column">
+                        <h4>Collab-Space</h4>
+                        <p class="text-muted small mb-3 flex-grow-1">A high-performance collaborative workspace built
+                            for real-time document editing and AI content generation. Features sub-millisecond sync via
+                            TipTap/Yjs and live database persistence.</p>
+                        <div class="mb-4">
+                            <span class="tech-badge">Next.js 16</span>
+                            <span class="tech-badge">Prisma</span>
+                            <span class="tech-badge">Supabase (PostgreSQL)</span>
+                            <span class="tech-badge">Google AI SDK</span>
+                        </div>
+                        <div class="d-flex gap-2 mt-auto">
+                            <a href="https://collab-space-eight.vercel.app" target="_blank"
+                                class="btn btn-theme btn-sm px-4">Live Demo</a>
+                            <a href="https://github.com/Srivastavasparsh/collab-space" target="_blank"
+                                class="btn btn-outline-secondary btn-sm px-4">Repo</a>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="timeline-item">
-                    <span class="timeline-date">Jan 2024 - June 2024</span>
-                    <h5 class="fw-bold">AI Engineer Intern</h5>
-                    <p class="mb-1 text-primary">Awaaz International (Remote)</p>
-                    <p class="text-muted small">Engineered real-time NLP translation models. Reduced inference latency and integrated translation APIs.</p>
+                <!-- Sparsh Copilot -->
+                <div class="col-md-6">
+                    <div class="project-card d-flex flex-column">
+                        <h4>Sparsh Copilot: Context-Aware AI Coding Assistant</h4>
+                        <p class="text-muted small mb-3 flex-grow-1">A Chrome Extension (Manifest V3) acting as an
+                            in-browser, zero-spoiler programming mentor for LeetCode. Features real-time DOM scraping
+                            and Socratic AI hints (<500ms latency).</p>
+                                <div class="mb-4">
+                                    <span class="tech-badge">JavaScript (DOM Scraper)</span>
+                                    <span class="tech-badge">FastAPI</span>
+                                    <span class="tech-badge">Meta LLaMA 3.3 70B</span>
+                                    <span class="tech-badge">Groq API</span>
+                                </div>
+                                <div class="d-flex gap-2 mt-auto">
+                                    <a href="https://github.com/Srivastavasparsh/Sparsh-Copilot" target="_blank"
+                                        class="btn btn-outline-secondary btn-sm w-100">View Source</a>
+                                </div>
+                    </div>
                 </div>
 
-                <div class="timeline-item">
-                    <span class="timeline-date">2020 - 2024</span>
-                    <h5 class="fw-bold">Bachelor of Technology (CSE)</h5>
-                    <p class="mb-1 text-primary">Pranveer Singh Institute of Technology, Kanpur</p>
-                    <p class="text-muted small">Graduated with 6.5 CGPA. Focused on Data Structures, Algorithms, and System Design.</p>
-                </div>
-
-                 <div class="timeline-item">
-                    <span class="timeline-date">Professional Certification</span>
-                    <h5 class="fw-bold">Generative AI & Machine Learning</h5>
-                    <p class="mb-1 text-primary">E&ICT Academy, IIT Guwahati</p>
-                    <p class="text-muted small">11-month intensive program covering LLMs, RAG, and Deep Learning.</p>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <section id="projects" class="container py-5">
-        <h2 class="text-center mb-5 fw-bold"><i class="fas fa-laptop-code text-primary"></i> Projects</h2>
-        <div class="row g-4">
-            
-            <!-- AI Technical Mock Interviewer (New Flagship Project) -->
-            <div class="col-md-4">
-                <div class="card h-100 border-primary">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title fw-bold">AI Technical Mock Interviewer</h5>
-                        <p class="card-text text-primary small">Multimodal RAG Platform</p>
-                        <p class="card-text small flex-grow-1">Real-time AI interview simulator featuring PDF resume parsing, dynamic persona shifts, live speech integration, and synchronized code execution evaluation.</p>
-                        <div class="mb-3">
+                <!-- AI Technical Mock Interviewer -->
+                <div class="col-md-6">
+                    <div class="project-card d-flex flex-column">
+                        <h4>AI Technical Mock Interview Platform</h4>
+                        <p class="text-muted small mb-3 flex-grow-1">An advanced, multimodal AI interviewing platform
+                            with real-time voice transcription, live speech integration (Whisper V3), live code
+                            evaluation, and PDF resume parsing.</p>
+                        <div class="mb-4">
                             <span class="tech-badge">Streamlit</span>
                             <span class="tech-badge">LangChain</span>
-                            <span class="tech-badge">ChromaDB</span>
+                            <span class="tech-badge">Whisper V3 (STT)</span>
                             <span class="tech-badge">Groq API</span>
                         </div>
-                        <div class="d-flex gap-2">
-                            <a href="https://ai-mock-interviewer-ecgrsxi5urnhunua5tjzva.streamlit.app" target="_blank" class="btn btn-primary btn-sm w-50">Live Demo</a>
-                            <a href="https://github.com/Srivastavasparsh/AI-Mock-Interviewer" target="_blank" class="btn btn-outline-primary btn-sm w-50">View Code</a>
+                        <div class="d-flex gap-2 mt-auto">
+                            <a href="https://ai-mock-interviewer-ecgrsxi5urnhunua5tjzva.streamlit.app" target="_blank"
+                                class="btn btn-theme btn-sm px-4">Live Demo</a>
+                            <a href="https://github.com/Srivastavasparsh/AI-Mock-Interviewer" target="_blank"
+                                class="btn btn-outline-secondary btn-sm px-4">Repo</a>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="col-md-4">
-                <div class="card h-100">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title fw-bold">Autonomous FinTech Analyst</h5>
-                        <p class="card-text text-primary small">Multi-Agent AI System</p>
-                        <p class="card-text small flex-grow-1">Engineered an autonomous agent system for real-time market research and quantitative analysis, featuring robust API fallback mechanisms for rate-limited streams.</p>
-                        <div class="mb-3">
-                            <span class="tech-badge">LangGraph</span>
+                <!-- DocuMind | Agentic Local RAG -->
+                <div class="col-md-6">
+                    <div class="project-card d-flex flex-column">
+                        <h4>DocuMind | Agentic Local RAG & Research Assistant</h4>
+                        <p class="text-muted small mb-3 flex-grow-1">A privacy-first, on-device Retrieval-Augmented
+                            Generation system. Dynamically routes queries between local vector databases, multi-PDF
+                            context, scraped Web URLs, and live internet searches.</p>
+                        <div class="mb-4">
+                            <span class="tech-badge">LangChain (FAISS)</span>
+                            <span class="tech-badge">Ollama (Llama 3.2)</span>
+                            <span class="tech-badge">SQLite Persistence</span>
+                        </div>
+                        <div class="d-flex gap-2 mt-auto">
+                            <a href="https://github.com/Srivastavasparsh/Local-RAG-Assistant" target="_blank"
+                                class="btn btn-outline-secondary btn-sm w-100">View Source</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SmartBank AI -->
+                <div class="col-md-6">
+                    <div class="project-card d-flex flex-column">
+                        <h4>SmartBank AI — Anomaly Detection Microservices</h4>
+                        <p class="text-muted small mb-3 flex-grow-1">A production-grade, event-driven banking backend.
+                            Integrates a Java Spring Boot transaction core with an asynchronous Python AI Worker for
+                            real-time fraud detection via CloudAMQP.</p>
+                        <div class="mb-4">
+                            <span class="tech-badge">Java Spring Boot</span>
+                            <span class="tech-badge">Python (AI Worker)</span>
+                            <span class="tech-badge">CloudAMQP (RabbitMQ)</span>
+                        </div>
+                        <div class="d-flex gap-2 mt-auto">
+                            <a href="https://github.com/Srivastavasparsh/SmartBank-AI-Microservices" target="_blank"
+                                class="btn btn-outline-secondary btn-sm w-100">View Source</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Autonomous Financial Analyst AI -->
+                <div class="col-md-6">
+                    <div class="project-card d-flex flex-column">
+                        <h4>Autonomous Financial Analyst AI</h4>
+                        <p class="text-muted small mb-3 flex-grow-1">Multi-agent AI architecture designed to automate
+                            financial research. Scrapes live market data (Yahoo Finance) and web news to generate
+                            professional investment theses in real-time.</p>
+                        <div class="mb-4">
+                            <span class="tech-badge">Next.js (Tailwind CSS)</span>
                             <span class="tech-badge">FastAPI</span>
-                            <span class="tech-badge">Llama 3</span>
+                            <span class="tech-badge">LangGraph + Llama 3</span>
                         </div>
-                        <a href="https://github.com/Srivastavasparsh/fintech-agent" target="_blank" class="btn btn-outline-primary btn-sm w-100 mt-auto">View Code</a>
+                        <div class="d-flex gap-2 mt-auto">
+                            <a href="https://autonomous-financial-analyst-liart.vercel.app" target="_blank"
+                                class="btn btn-theme btn-sm px-4">Live Demo</a>
+                            <a href="https://github.com/Srivastavasparsh/autonomous-financial-analyst" target="_blank"
+                                class="btn btn-outline-secondary btn-sm px-4">Repo</a>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="col-md-4">
-                <div class="card h-100">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title fw-bold">AI Bug Detector</h5>
-                        <p class="card-text text-primary small">LLM Code Analyzer</p>
-                        <p class="card-text small flex-grow-1">Automated code analysis tool leveraging Generative AI to identify vulnerabilities and syntax errors, providing immediate context-aware refactoring solutions.</p>
-                        <div class="mb-3">
-                            <span class="tech-badge">Generative AI</span>
+                <!-- Real-Time Fraud Detection Pipeline -->
+                <div class="col-md-6">
+                    <div class="project-card d-flex flex-column">
+                        <h4>Real-Time Fraud Detection Pipeline</h4>
+                        <p class="text-muted small mb-3 flex-grow-1">Containerized data engineering pipeline designed to
+                            ingest, process, and flag fraudulent transactions with sub-second latency. Uses Apache Kafka
+                            for fault-tolerant ingestion.</p>
+                        <div class="mb-4">
+                            <span class="tech-badge">Python 3.12</span>
+                            <span class="tech-badge">Apache Spark 3.5.1</span>
+                            <span class="tech-badge">Apache Kafka</span>
+                            <span class="tech-badge">Docker Compose</span>
+                        </div>
+                        <div class="d-flex gap-2 mt-auto">
+                            <a href="https://github.com/Srivastavasparsh/Real-Time-Fraud-Detection" target="_blank"
+                                class="btn btn-outline-secondary btn-sm w-100">View Source</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SmartCart AI -->
+                <div class="col-md-6">
+                    <div class="project-card d-flex flex-column">
+                        <h4>SmartCart AI - Generative Search Engine</h4>
+                        <p class="text-muted small mb-3 flex-grow-1">An e-commerce search engine that understands
+                            context (e.g., "something for winter"). Architected as microservices, utilizing Java Spring
+                            Boot (Backend) and Python/Llama 3.2 (AI Brain).</p>
+                        <div class="mb-4">
+                            <span class="tech-badge">Java Spring Boot</span>
+                            <span class="tech-badge">Python Flask</span>
+                            <span class="tech-badge">Llama 3.2 + LangChain</span>
+                        </div>
+                        <div class="d-flex gap-2 mt-auto">
+                            <a href="https://github.com/Srivastavasparsh/smartcart-AI" target="_blank"
+                                class="btn btn-outline-secondary btn-sm w-100">View Source</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Bug Reproducer -->
+                <div class="col-md-6">
+                    <div class="project-card d-flex flex-column">
+                        <h4>AI Bug Reproducer & QA Sandbox</h4>
+                        <p class="text-muted small mb-3 flex-grow-1">Automated QA developer tool that ingests raw Python
+                            stack traces, analyzes them using Abstract Syntax Tree (AST) parsing, and synthesizes a
+                            reproduction script in an ephemeral Docker sandbox.</p>
+                        <div class="mb-4">
+                            <span class="tech-badge">Python (AST Parsing)</span>
+                            <span class="tech-badge">Streamlit</span>
+                            <span class="tech-badge">Ephemeral Containers (Docker)</span>
+                        </div>
+                        <div class="d-flex gap-2 mt-auto">
+                            <a href="https://github.com/Srivastavasparsh/ai-bug-reproducer" target="_blank"
+                                class="btn btn-outline-secondary btn-sm w-100">View Source</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sales Forecasting for Restaurants -->
+                <div class="col-md-6">
+                    <div class="project-card d-flex flex-column">
+                        <h4>Sales Forecasting for Restaurant Items</h4>
+                        <p class="text-muted small mb-3 flex-grow-1">A critical time series forecasting project designed
+                            for business planning. The analysis focuses on item-level demand prediction using disparate
+                            datasets, comparing ML models against LSTM deep learning models.</p>
+                        <div class="mb-4">
+                            <span class="tech-badge">Jupyter Notebook</span>
+                            <span class="tech-badge">Python (EDA)</span>
+                            <span class="tech-badge">Random Forest + XGBoost</span>
+                            <span class="tech-badge">Deep Learning (LSTM)</span>
+                        </div>
+                        <div class="d-flex gap-2 mt-auto">
+                            <a href="https://github.com/Srivastavasparsh/Sales-Forecasting" target="_blank"
+                                class="btn btn-outline-secondary btn-sm w-100">View Source</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section> <!-- End of Projects -->
+
+        <!-- Skills Section -->
+        <section id="skills" class="mb-5 pt-4">
+            <h2 class="section-title">Technical Arsenal</h2>
+            <div class="project-card">
+                <div class="row">
+                    <!-- Languages -->
+                    <div class="col-md-6 mb-4">
+                        <h5 class="fw-bold mb-3" style="color: var(--theme-color); font-size: 1rem;"><i
+                                class="fas fa-code me-2"></i>Languages</h5>
+                        <div class="d-flex flex-wrap gap-2">
                             <span class="tech-badge">Python</span>
-                            <span class="tech-badge">Prompt Eng</span>
-                        </div>
-                        <a href="https://github.com/Srivastavasparsh/ai-bug-detector" target="_blank" class="btn btn-outline-primary btn-sm w-100 mt-auto">View Code</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card h-100">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title fw-bold">Real-Time Fraud Detection</h5>
-                        <p class="card-text text-primary small">ML Classification</p>
-                        <p class="card-text small flex-grow-1">Low-latency machine learning classification system designed to ingest streaming transaction data and flag anomalous patterns in real-time.</p>
-                        <div class="mb-3">
-                            <span class="tech-badge">Machine Learning</span>
-                            <span class="tech-badge">Pipelines</span>
-                            <span class="tech-badge">Python</span>
-                        </div>
-                        <a href="https://github.com/Srivastavasparsh/real-time-fraud-detection" target="_blank" class="btn btn-outline-primary btn-sm w-100 mt-auto">View Code</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card h-100">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title fw-bold">SmartBank AI System</h5>
-                        <p class="card-text text-primary small">Hybrid Microservices</p>
-                        <p class="card-text small flex-grow-1">Secure banking system integrating Java Spring Boot for transactions and Python Flask for AI credit analysis.</p>
-                        <div class="mb-3">
                             <span class="tech-badge">Java</span>
+                            <span class="tech-badge">JavaScript</span>
+                            <span class="tech-badge">TypeScript</span>
+                            <span class="tech-badge">Swift</span>
+                            <span class="tech-badge">SQL</span>
+                        </div>
+                    </div>
+
+                    <!-- AI & Data -->
+                    <div class="col-md-6 mb-4">
+                        <h5 class="fw-bold mb-3" style="color: var(--theme-color); font-size: 1rem;"><i
+                                class="fas fa-brain me-2"></i>AI & Data Engineering</h5>
+                        <div class="d-flex flex-wrap gap-2">
+                            <span class="tech-badge">Generative AI</span>
+                            <span class="tech-badge">LangChain / LangGraph</span>
+                            <span class="tech-badge">LLM Orchestration</span>
+                            <span class="tech-badge">Time Series Forecasting</span>
+                            <span class="tech-badge">Data Analytics</span>
+                        </div>
+                    </div>
+
+                    <!-- Backend & Cloud -->
+                    <div class="col-md-6 mb-4 mb-md-0">
+                        <h5 class="fw-bold mb-3" style="color: var(--theme-color); font-size: 1rem;"><i
+                                class="fas fa-server me-2"></i>Backend & Infrastructure</h5>
+                        <div class="d-flex flex-wrap gap-2">
                             <span class="tech-badge">Spring Boot</span>
-                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">FastAPI</span>
+                            <span class="tech-badge">Microservices</span>
+                            <span class="tech-badge">Docker & Kubernetes</span>
+                            <span class="tech-badge">CI/CD Pipelines</span>
                         </div>
-                        <a href="https://github.com/Srivastavasparsh/SmartBank-AI-Microservices" target="_blank" class="btn btn-outline-primary btn-sm w-100 mt-auto">View Code</a>
+                    </div>
+
+                    <!-- Frontend & Full Stack -->
+                    <div class="col-md-6">
+                        <h5 class="fw-bold mb-3" style="color: var(--theme-color); font-size: 1rem;"><i
+                                class="fas fa-laptop-code me-2"></i>Frontend & Full Stack</h5>
+                        <div class="d-flex flex-wrap gap-2">
+                            <span class="tech-badge">React & Next.js</span>
+                            <span class="tech-badge">Tailwind CSS</span>
+                            <span class="tech-badge">Prisma ORM</span>
+                            <span class="tech-badge">Supabase / PostgreSQL</span>
+                        </div>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <div class="col-md-4">
-                <div class="card h-100">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title fw-bold">SmartCart AI</h5>
-                        <p class="card-text text-primary small">Recommendation Engine</p>
-                        <p class="card-text small flex-grow-1">Intelligent shopping assistant using Collaborative Filtering to suggest products based on user history.</p>
-                        <div class="mb-3">
-                            <span class="tech-badge">Python</span>
-                            <span class="tech-badge">Pandas</span>
-                            <span class="tech-badge">ML</span>
+        <!-- Experience & Education Section -->
+        <section id="experience" class="mb-5 pt-4">
+            <h2 class="section-title">Experience & Education</h2>
+            <div class="row g-4">
+
+                <!-- Freelance / Independent -->
+                <div class="col-12">
+                    <div class="project-card" style="border-left: 4px solid var(--theme-color);">
+                        <div class="d-flex justify-content-between align-items-md-center flex-column flex-md-row mb-2">
+                            <h4 class="mb-0">Freelance Full Stack AI Engineer</h4>
+                            <span class="badge bg-light text-dark border mt-2 mt-md-0">Oct 2024 - Present</span>
                         </div>
-                        <a href="https://github.com/Srivastavasparsh/smartcart-AI" target="_blank" class="btn btn-outline-primary btn-sm w-100 mt-auto">View Code</a>
+                        <p class="text-muted small">
+                            Architecting custom generative AI solutions, deploying scalable microservices, and
+                            developing high-performance web applications. Focused on bridging the gap between advanced
+                            AI research and production-grade software.
+                        </p>
                     </div>
                 </div>
-            </div>
 
-            <div class="col-md-4">
-                <div class="card h-100">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title fw-bold">Local RAG Researcher</h5>
-                        <p class="card-text text-primary small">GenAI Assistant</p>
-                        <p class="card-text small flex-grow-1">Privacy-focused AI assistant using Ollama and LangChain to chat with local PDF documents offline.</p>
-                        <div class="mb-3">
-                            <span class="tech-badge">LangChain</span>
-                            <span class="tech-badge">Ollama</span>
-                            <span class="tech-badge">ChromaDB</span>
+                <!-- VASTECH -->
+                <div class="col-12">
+                    <div class="project-card" style="border-left: 4px solid var(--theme-color);">
+                        <div class="d-flex justify-content-between align-items-md-center flex-column flex-md-row mb-2">
+                            <h4 class="mb-0">Software Development Engineer (SDE) Intern</h4>
+                            <span class="badge bg-light text-dark border mt-2 mt-md-0">July 2024 - Sept 2024</span>
                         </div>
-                        <a href="https://github.com/Srivastavasparsh/Local-RAG-Assistant" target="_blank" class="btn btn-outline-primary btn-sm w-100 mt-auto">View Code</a>
+                        <p class="fw-bold mb-2" style="color: var(--theme-color);">VASTECH</p>
+                        <p class="text-muted small">
+                            Focused on frontend development for a responsive iOS application utilizing Swift, ensuring
+                            seamless user experiences and robust integrations.
+                        </p>
                     </div>
                 </div>
+
+                <!-- Awaaz International -->
+                <div class="col-12">
+                    <div class="project-card" style="border-left: 4px solid var(--theme-color);">
+                        <div class="d-flex justify-content-between align-items-md-center flex-column flex-md-row mb-2">
+                            <h4 class="mb-0">AI Engineer Intern</h4>
+                            <span class="badge bg-light text-dark border mt-2 mt-md-0">Jan 2024 - June 2024</span>
+                        </div>
+                        <p class="fw-bold mb-2" style="color: var(--theme-color);">Awaaz International</p>
+                        <p class="text-muted small">
+                            Engineered and optimized a robust language translation application, integrating advanced NLP
+                            models to improve real-time translation accuracy.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Education -->
+                <div class="col-12">
+                    <div class="project-card" style="border-left: 4px solid #6c757d;">
+                        <h4 class="mb-3">Education & Certifications</h4>
+                        <ul class="text-muted small mb-0 ps-3" style="line-height: 1.8;">
+                            <li><strong>Generative AI & Machine Learning:</strong> 11-Month Professional Certification,
+                                IIT Guwahati</li>
+                            <li><strong>B.Tech in Computer Science:</strong> Graduated 2024</li>
+                        </ul>
+                    </div>
+                </div>
+
             </div>
+        </section>
 
-        </div>
-    </section>
+    </main>
 
-    <section id="skills" class="container py-5 mb-5">
-        <h2 class="text-center mb-4 fw-bold">Technical Arsenal</h2>
-        <div class="row text-center justify-content-center">
-            <div class="col-md-10">
-                <span class="badge bg-dark border border-secondary p-3 m-1">Java Core/Adv</span>
-                <span class="badge bg-dark border border-secondary p-3 m-1">Spring Boot</span>
-                <span class="badge bg-dark border border-secondary p-3 m-1">Python</span>
-                <span class="badge bg-dark border border-secondary p-3 m-1">FastAPI</span>
-                <span class="badge bg-dark border border-secondary p-3 m-1">Microservices</span>
-                <span class="badge bg-dark border border-secondary p-3 m-1">Generative AI</span>
-                <span class="badge bg-dark border border-secondary p-3 m-1">LangChain / LangGraph</span>
-                <span class="badge bg-dark border border-secondary p-3 m-1">Docker</span>
-                <span class="badge bg-dark border border-secondary p-3 m-1">Kubernetes</span>
-                <span class="badge bg-dark border border-secondary p-3 m-1">CI/CD Pipelines</span>
-                <span class="badge bg-dark border border-secondary p-3 m-1">Data Analytics</span>
-                <span class="badge bg-dark border border-secondary p-3 m-1">SQL / MySQL</span>
-                <span class="badge bg-dark border border-secondary p-3 m-1">Data Structures</span>
-                <span class="badge bg-dark border border-secondary p-3 m-1">Git & GitHub</span>
-            </div>
-        </div>
-    </section>
+    <!-- Chatbot Tooltip -->
+    <div id="chat-tooltip" class="chat-tooltip">
+        👋 Hey recruiter! For more info, chat with my AI assistant here.
+    </div>
 
-    <footer class="text-center py-4 text-muted border-top border-secondary">
-        <p>Email: <a href="mailto:srivastava.sparsh123@gmail.com" class="text-decoration-none text-light">srivastava.sparsh123@gmail.com</a></p>
-        <p class="small">&copy; 2026 Sparsh Srivastava. Hosted on GitHub Pages.</p>
-    </footer>
-
-    <button id="ai-chat-btn" class="custom-chat-btn shadow-lg">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 8V4H8"></path><rect x="4" y="8" width="16" height="12" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path>
-        </svg>
+    <!-- AI Chatbot UI -->
+    <button id="ai-chat-btn" class="custom-chat-btn">
+        <i class="fas fa-robot fs-4"></i>
     </button>
 
-    <div id="ai-chat-box" class="custom-chat-box shadow-lg hidden">
+    <div id="ai-chat-box" class="custom-chat-box hidden">
         <div class="chat-header">
-            <div class="d-flex align-items-center">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f5c518" stroke-width="2" class="me-2">
-                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-                </svg>
-                <span class="fw-bold text-white">Sparsh-AI Agent</span>
-            </div>
+            <span><i class="fas fa-bolt text-warning me-2"></i> Sparsh-AI Agent</span>
             <button id="close-chat-btn" class="close-btn">&times;</button>
         </div>
-        
         <div class="chat-body" id="chat-body"></div>
-
         <div class="chat-footer">
             <input type="text" id="chat-input" placeholder="Ask about my AI projects..." autocomplete="off">
-            <button id="send-btn">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-            </button>
+            <button id="send-btn"><i class="fas fa-paper-plane"></i></button>
         </div>
     </div>
 
-    <style>
-        .custom-chat-btn {
-            position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px;
-            background: #0d6efd; color: white; border: none; border-radius: 50%;
-            display: flex; justify-content: center; align-items: center;
-            cursor: pointer; z-index: 1000; transition: transform 0.3s ease, background 0.3s ease;
-        }
-        .custom-chat-btn:hover { transform: scale(1.1); background: #0b5ed7; }
-        
-        .custom-chat-box {
-            position: fixed; bottom: 100px; right: 30px; width: 350px; height: 500px; max-height: 80vh;
-            background: #1e1e1e; border: 1px solid #333; border-radius: 12px;
-            display: flex; flex-direction: column; z-index: 1000;
-            opacity: 1; transform: translateY(0); transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .custom-chat-box.hidden {
-            opacity: 0; transform: translateY(20px); pointer-events: none;
-        }
-        
-        .chat-header {
-            background: #121212; padding: 15px; border-bottom: 1px solid #333;
-            border-top-left-radius: 12px; border-top-right-radius: 12px;
-            display: flex; justify-content: space-between; align-items: center;
-        }
-        .close-btn { background: none; border: none; color: #888; font-size: 24px; cursor: pointer; line-height: 1; }
-        .close-btn:hover { color: white; }
-        
-        .chat-body { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
-        .chat-body::-webkit-scrollbar { width: 6px; }
-        .chat-body::-webkit-scrollbar-thumb { background: #444; border-radius: 3px; }
-        
-        .ai-message {
-            background: rgba(13, 110, 253, 0.1); border: 1px solid rgba(13, 110, 253, 0.2);
-            padding: 10px 15px; border-radius: 8px; border-bottom-left-radius: 0;
-            color: #e0e0e0; font-size: 0.9rem; max-width: 85%; align-self: flex-start;
-        }
-        
-        .chat-footer {
-            padding: 15px; background: #121212; border-top: 1px solid #333;
-            border-bottom-left-radius: 12px; border-bottom-right-radius: 12px;
-            display: flex; gap: 10px;
-        }
-        .chat-footer input {
-            flex: 1; background: #2c2c2c; border: 1px solid #444; color: white;
-            padding: 10px 15px; border-radius: 20px; outline: none; font-size: 0.9rem;
-        }
-        .chat-footer input:focus { border-color: #0d6efd; }
-        .chat-footer button {
-            background: #0d6efd; color: white; border: none; width: 40px; height: 40px;
-            border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer;
-        }
-        .chat-footer button:hover { background: #0b5ed7; }
-        
-        @media (max-width: 768px) {
-            .custom-chat-box { width: calc(100% - 40px); right: 20px; bottom: 90px; }
-            .custom-chat-btn { bottom: 20px; right: 20px; }
-        }
-    </style>
-
+    <!-- Minimal JS for Chatbot -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const chatBtn = document.getElementById('ai-chat-btn');
@@ -398,7 +808,7 @@ You can select all the code below, copy it, and completely overwrite your `index
             const closeBtn = document.getElementById('close-chat-btn');
             const chatBody = document.getElementById('chat-body');
             const sendBtn = document.getElementById('send-btn');
-            
+
             let initialized = false;
 
             function typeWriter(text, element, speed = 30) {
@@ -416,13 +826,14 @@ You can select all the code below, copy it, and completely overwrite your `index
 
             chatBtn.addEventListener('click', () => {
                 chatBox.classList.toggle('hidden');
-                
+                document.getElementById('chat-tooltip').style.display = 'none'; // Hides tooltip when clicked
+
                 if (!chatBox.classList.contains('hidden') && !initialized) {
                     initialized = true;
                     const msgDiv = document.createElement('div');
                     msgDiv.className = 'ai-message';
                     chatBody.appendChild(msgDiv);
-                    
+
                     setTimeout(() => {
                         typeWriter("Hi! I'm Sparsh's AI assistant, powered by FastAPI & LLMs. I can answer questions about his experience and projects. What would you like to know?", msgDiv);
                     }, 300);
@@ -434,20 +845,24 @@ You can select all the code below, copy it, and completely overwrite your `index
             sendBtn.addEventListener('click', async () => {
                 const inputField = document.getElementById('chat-input');
                 const userText = inputField.value.trim();
-                
+
                 if (!userText) return;
-                
+
+                // Add User Message
                 const userMsgDiv = document.createElement('div');
                 userMsgDiv.className = 'ai-message';
-                userMsgDiv.style.background = '#2c2c2c';
-                userMsgDiv.style.borderColor = '#444';
+                userMsgDiv.style.background = '#e9ecef';
+                userMsgDiv.style.color = '#292929';
+                userMsgDiv.style.borderBottomLeftRadius = '8px';
+                userMsgDiv.style.borderBottomRightRadius = '0';
                 userMsgDiv.style.alignSelf = 'flex-end';
                 userMsgDiv.innerText = userText;
                 chatBody.appendChild(userMsgDiv);
-                
-                inputField.value = ''; 
-                chatBody.scrollTop = chatBody.scrollHeight; 
 
+                inputField.value = '';
+                chatBody.scrollTop = chatBody.scrollHeight;
+
+                // Show Thinking Indicator
                 const typingDiv = document.createElement('div');
                 typingDiv.className = 'ai-message text-muted small';
                 typingDiv.innerText = "Sparsh-AI is thinking...";
@@ -455,22 +870,23 @@ You can select all the code below, copy it, and completely overwrite your `index
                 chatBody.scrollTop = chatBody.scrollHeight;
 
                 try {
-                   const response = await fetch('https://sparsh-ai-agent.onrender.com/chat', {
+                    const response = await fetch('https://sparsh-ai-agent.onrender.com/chat', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ message: userText })
                     });
-                    
+
                     const data = await response.json();
-                    
+
                     chatBody.removeChild(typingDiv);
-                    
+
+                    // Add Bot Message
                     const botMsgDiv = document.createElement('div');
                     botMsgDiv.className = 'ai-message';
                     chatBody.appendChild(botMsgDiv);
-                    
-                    typeWriter(data.reply, botMsgDiv, 20); 
-                    
+
+                    typeWriter(data.reply, botMsgDiv, 20);
+
                 } catch (error) {
                     chatBody.removeChild(typingDiv);
                     const errorDiv = document.createElement('div');
@@ -487,6 +903,5 @@ You can select all the code below, copy it, and completely overwrite your `index
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-</html>
 
-```
+</html>
